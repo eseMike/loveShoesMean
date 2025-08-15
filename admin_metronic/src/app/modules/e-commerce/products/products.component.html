@@ -198,70 +198,61 @@
           <th>ACTIONS</th>
         </thead>
         <tbody>
-          <tr *ngFor="let product of productsService.items$ | async">
-            <td class="selection-cell">
-              <label class="checkbox checkbox-single"
-                ><input
-                  type="checkbox"
-                  (click)="grouping.selectRow(product.id)"
-                  [checked]="grouping.isRowSelected(product.id)"
-                />
-                <span></span>
-              </label>
-            </td>
-            <td>{{ product.VINCode }}</td>
-            <td>{{ product.manufacture }}</td>
-            <td>{{ product.model }}</td>
-            <td>{{ product.modelYear }}</td>
-            <td>
-              <span [style.color]="product.color">{{ product.color }}</span>
-            </td>
-            <td>$ {{ product.price }}</td>
-            <td>
-              <span
-                class="label label-lg label-inline"
-                [class.label-light-success]="product.status === 1"
-                [class.label-light-primary]="product.status === 2"
-              >
-                <ng-container *ngIf="product.status === 1"
-                  >Selling</ng-container
-                >
-                <ng-container *ngIf="product.status === 2">Sold</ng-container>
-              </span>
-            </td>
-            <td>
-              <ng-container *ngIf="product.condition === 1">NEW</ng-container>
-              <ng-container *ngIf="product.condition === 2">USED</ng-container>
-            </td>
-            <td>
-              <a
-                title="Edit product"
-                class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
-                [routerLink]="'/ecommerce/product/edit/' + product.id"
-              >
-                <span
-                  [inlineSVG]="
-                    './assets/media/svg/icons/Communication/Write.svg'
-                  "
-                  cacheSVG="true"
-                  class="svg-icon svg-icon-md svg-icon-primary"
-                >
-                </span>
-              </a>
-              <a
-                title="Delete product"
-                class="btn btn-icon btn-light btn-hover-danger btn-sm"
-                (click)="delete(product.id)"
-              >
-                <span
-                  [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
-                  cacheSVG="true"
-                  class="svg-icon svg-icon-md svg-icon-danger"
-                >
-                </span>
-              </a>
-            </td>
-          </tr>
+        <tr *ngFor="let product of products">
+  <td class="selection-cell">
+    <label class="checkbox checkbox-single">
+      <input
+        type="checkbox"
+        (click)="grouping.selectRow(product.id)"
+        [checked]="grouping.isRowSelected(product.id)"
+      />
+      <span></span>
+    </label>
+  </td>
+  <td>{{ product.name }}</td>
+  <td>{{ product.description }}</td>
+  <td>$ {{ product.price }}</td>
+  <td>
+    <span
+      class="label label-lg label-inline"
+      [class.label-light-success]="product.status === 'activo'"
+      [class.label-light-primary]="product.status === 'inactivo'"
+    >
+      <ng-container *ngIf="product.status === 'activo'">Activo</ng-container>
+      <ng-container *ngIf="product.status === 'inactivo'">Inactivo</ng-container>
+    </span>
+  </td>
+  <td>
+    <ng-container *ngIf="product.condition === 'nuevo'">Nuevo</ng-container>
+    <ng-container *ngIf="product.condition === 'usado'">Usado</ng-container>
+  </td>
+  <td>
+    <a
+      title="Edit product"
+      class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+      [routerLink]="'/ecommerce/product/edit/' + product.id"
+    >
+      <span
+        [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'"
+        cacheSVG="true"
+        class="svg-icon svg-icon-md svg-icon-primary"
+      >
+      </span>
+    </a>
+    <a
+      title="Delete product"
+      class="btn btn-icon btn-light btn-hover-danger btn-sm"
+      (click)="delete(product.id)"
+    >
+      <span
+        [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
+        cacheSVG="true"
+        class="svg-icon svg-icon-md svg-icon-danger"
+      >
+      </span>
+    </a>
+  </td>
+</tr>
         </tbody>
       </table>
     </div>

@@ -48,6 +48,18 @@ export class ProductsComponent
   filterGroup: FormGroup;
   searchGroup: FormGroup;
   private subscriptions: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+  
+public products = [
+  { id: 1, name: 'Mules', description: 'Calzado estilo mules', price: 950, status: 'activo', condition: 'nuevo' },
+  { id: 2, name: 'Sandalias', description: 'Sandalias cómodas y frescas', price: 850, status: 'activo', condition: 'nuevo' },
+  { id: 3, name: 'Flats/Balerinas', description: 'Flats elegantes para uso diario', price: 780, status: 'activo', condition: 'nuevo' },
+  { id: 4, name: 'Tenis', description: 'Tenis deportivos y casuales', price: 1200, status: 'activo', condition: 'nuevo' },
+  { id: 5, name: 'Botas/Botines', description: 'Botines de moda y resistentes', price: 1500, status: 'activo', condition: 'nuevo' },
+  { id: 6, name: 'Tacones', description: 'Tacones elegantes para ocasiones especiales', price: 1100, status: 'activo', condition: 'nuevo' },
+  { id: 7, name: 'Plataformas', description: 'Zapatos de plataforma modernos', price: 1050, status: 'activo', condition: 'nuevo' },
+  { id: 8, name: 'Confort', description: 'Calzado diseñado para comodidad', price: 980, status: 'activo', condition: 'nuevo' },
+  { id: 9, name: 'New Arrivals', description: 'Últimos modelos en calzado', price: 1300, status: 'activo', condition: 'nuevo' }
+];
 
   constructor(
     private fb: FormBuilder,
@@ -59,13 +71,13 @@ export class ProductsComponent
   ngOnInit(): void {
     this.filterForm();
     this.searchForm();
-    this.productsService.fetch();
+    // this.productsService.fetch(); 
     const sb = this.productsService.isLoading$.subscribe(res => this.isLoading = res);
     this.subscriptions.push(sb);
     this.grouping = this.productsService.grouping;
     this.paginator = this.productsService.paginator;
     this.sorting = this.productsService.sorting;
-    this.productsService.fetch();
+    // this.productsService.fetch(); 
   }
 
   ngOnDestroy() {
